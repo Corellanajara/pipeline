@@ -1,0 +1,8 @@
+,0,1,2,3,4,5,6
+0,Clasificador : LR,precision : 72.9411764706,sensibilidad : 68.4210526316,especificidad : 68.4210526316,valor Predictivo Positivo : 70.2702702703,Valor predictivo Negativo : 75.0,MCC :45.1433558903
+1,Clasificador : LDA,precision : 81.1764705882,sensibilidad : 68.4210526316,especificidad : 68.4210526316,valor Predictivo Positivo : 86.6666666667,Valor predictivo Negativo : 78.1818181818,MCC :62.3305671095
+2,Clasificador : KNN,precision : 71.7647058824,sensibilidad : 50.0,especificidad : 50.0,valor Predictivo Positivo : 79.1666666667,Valor predictivo Negativo : 68.8524590164,MCC :43.4754473418
+3,Clasificador : CART,precision : 78.8235294118,sensibilidad : 71.0526315789,especificidad : 71.0526315789,valor Predictivo Positivo : 79.4117647059,Valor predictivo Negativo : 78.431372549,MCC :56.9948557956
+4,Clasificador : Arbol,precision : 75.2941176471,sensibilidad : 65.7894736842,especificidad : 65.7894736842,valor Predictivo Positivo : 75.7575757576,Valor predictivo Negativo : 75.0,MCC :49.7529442172
+5,Clasificador : NB,precision : 82.3529411765,sensibilidad : 78.9473684211,especificidad : 78.9473684211,valor Predictivo Positivo : 81.0810810811,Valor predictivo Negativo : 83.3333333333,MCC :64.2338297742
+6,Clasificador : SVM,precision : 83.5294117647,sensibilidad : 73.6842105263,especificidad : 73.6842105263,valor Predictivo Positivo : 87.5,Valor predictivo Negativo : 81.1320754717,MCC :66.8804719477

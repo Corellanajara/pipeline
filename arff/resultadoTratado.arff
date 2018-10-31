@@ -1,0 +1,30 @@
+@relation 'resultadoWEKA-weka.filters.supervised.attribute.AttributeSelection-Eweka.attributeSelection.CfsSubsetEval-Sweka.attributeSelection.BestFirst -D 1 -N 5'
+
+@attribute 5028.364 numeric
+@attribute 5228.485 numeric
+@attribute 5736.22 numeric
+@attribute 6766.783 numeric
+@attribute clase numeric
+
+@data
+
+6.249,0,0,17.288,0
+6.249,0,0,17.288,0
+8.24,4.186,0,11.498,0
+8.24,4.186,0,11.498,0
+6.249,0,0,17.288,0
+6.249,0,0,17.288,0
+6.249,0,0,17.288,0
+8.24,4.186,0,11.498,0
+6.249,0,0,17.288,0
+8.24,4.186,0,11.498,0
+0,0,11.032,0,1
+0,0,11.032,0,1
+0,0,11.032,0,1
+0,0,11.032,0,1
+0,0,11.032,0,1
+0,0,11.032,0,1
+0,0,11.032,0,1
+0,0,11.032,0,1
+0,0,8.845,0,1
+0,0,11.032,0,1
