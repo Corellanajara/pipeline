@@ -46,32 +46,25 @@ masasaPromedio = []
 #error = input("Cual es el porcentaje de error para este documento?")
 #Sderror = input("Cual es el valor de error de calibracion del equipo?")
 
-cortemin = 5000;
-cortemax = 14000;
-error = 4;
-Sderror = 4;
-def generarPdf():
-    from reportlab.lib.pagesizes import letter
-    from reportlab.pdfgen import canvas
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.units import inch
 
-    canvas = canvas.Canvas("form.pdf", pagesize=letter)
-    canvas.setLineWidth(.3)
-    canvas.setFont('Helvetica', 12)
 
-    canvas.drawString(30,750,'CARTA DE PRUEBA')
-    canvas.drawString(30,735,'RICARDOGEEK.COM')
-    canvas.drawString(500,750,"27/10/2016")
-    canvas.line(480,747,580,747)
+canvas = canvas.Canvas("reporte.pdf", pagesize=letter)
+cortemin = 5000
+cortemax = 14000
+error = 4
+Sderror = 4
 
-    canvas.drawString(275,725,'ESTIMADO:')
-    canvas.drawString(500,725,"<NOMBRE>")
-    canvas.line(378,723,580,723)
 
-    canvas.drawString(30,703,'ETIQUETA:')
-    canvas.line(120,700,580,700)
-    canvas.drawString(120,703,"<ASUNTO DE LA CARTA GENERICO>")
+def agregarImagen(nombre,equis,ye):
+    filename = str(nombre)+".png"
 
-    canvas.save()
+    canvas.drawImage(filename, equis,ye) # Who needs consistency?
+def generarPdf(texto,equis,ye):
+    canvas.drawString(equis,ye,texto)
+
 # funcion generar matriz recibe las hojas y las masas promedio y los estados
 def generarMatriz(hojas,masasPromedio,IdEstado):
     x = len(hojas) + 1
@@ -226,8 +219,9 @@ def reduccionDimensionalidad(paso2):
     paso3 = pd.DataFrame({'x' : x,'y':y,'z':z})
 
     return paso3
-
-def otro(nombres):
+equis = 100
+ye = 750
+def otro(nombres,equis,ye):
     dataset = pd.read_csv("csv/resultado.csv",names = nombres)
     # print(dataset.describe())
     # print(dataset.groupby('clase').size())
@@ -308,7 +302,8 @@ def otro(nombres):
 	print "Curva roc : "+str(auc)
         plt.plot(fpr,tpr,label="resultado , auc "+str(auc))
         plt.legend(loc=4)
-        plt.show()
+        #plt.show()
+
     for i in range(len(Confusiones)):
         # print value
         vp = float(Confusiones[i][0])
@@ -335,6 +330,27 @@ def otro(nombres):
         #todos : { todos }
         data = [n,p,s,e,vpp,vpn,m]
         datas.append(data)
+        generarPdf(n,equis,ye)
+        #equis=equis + 100
+        ye = ye - 50
+        generarPdf(p,equis,ye)
+        #equis=equis + 100
+        ye = ye - 50
+        generarPdf(s,equis,ye)
+        #equis=equis + 100
+        ye = ye - 50
+        generarPdf(e,equis,ye)
+        #equis=equis + 100
+        ye = ye - 50
+        generarPdf(vpp,equis,ye)
+        #equis=equis + 100
+        ye = ye - 50
+        generarPdf(vpn,equis,ye)
+        #equis=equis + 100
+        ye = ye - 50
+        generarPdf(m,equis,ye)
+        ye = ye - 50
+
     resume = pd.DataFrame(datas)
     resume.to_csv("resumen.csv")
 
@@ -582,7 +598,9 @@ for i in range(len(nombres)-1):
     ax.set_ylabel('Valores')
     ax.set_xticklabels(['Clase 1','Clase 2'])
     fig.savefig(str(nombres[i])+'.png', bbox_inches='tight')
-    plt.show()
+    agregarImagen(nombres[i],equis,ye)
+    #plt.show()
+
 nombres.pop()
 matrizPvalues = {'atributos':nombres,'p value mannwhitneyu':mannwhitneyu,'p value kruskal':kruskal,'p value t estudent':testudend,'mean class 1':promedioX,'mean class 2':promedioY, 'sd class 1':desviacionX,'sd class 2':desviacionY}
 pValues = pd.DataFrame(data=matrizPvalues)
@@ -657,6 +675,8 @@ for file in files:
             outFile.writelines(new)
 
 # ejecuto los modelos para ver la diferencia con los modelos pasados por weka
-otro(masasPromedio)
+otro(masasPromedio,equis,ye)
 # modelos es el que ejecuta los modelos luego de pasarlos por best first de weka
 modelos()
+#
+canvas.save()
